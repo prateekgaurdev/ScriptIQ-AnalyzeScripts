@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Mic, Square, Loader2, UserPlus } from "lucide-react";
+import { Mic, Square, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useVoice } from "@/context/VoiceContext";
+import { API_BASE } from "@/lib/api";
 
 interface VoiceInputProps {
   onTranscript: (text: string) => void;
@@ -79,7 +80,7 @@ export default function VoiceInput({ onTranscript }: VoiceInputProps) {
     formData.append("file", blob, "recording.webm");
 
     try {
-      const resp = await fetch("http://localhost:8000/voice/transcribe", {
+      const resp = await fetch(`${API_BASE}/voice/transcribe`, {
         method: "POST",
         body: formData,
       });
