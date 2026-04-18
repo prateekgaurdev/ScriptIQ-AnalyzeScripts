@@ -1,6 +1,8 @@
 // ScriptIQ API layer — connected to FastAPI backend
 export const USE_MOCK = false;
-export const API_BASE = "http://localhost:8000";
+export const API_BASE = import.meta.env.PROD 
+  ? "/_/backend" 
+  : "http://localhost:8000";
 
 export type Genre = "thriller" | "romance" | "drama" | "comedy" | "horror" | "scifi";
 
