@@ -27,9 +27,9 @@ const Index = () => {
               <span className="italic text-accent">editor</span> would.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              ScriptIQ runs a six-stage pipeline over your screenplay — emotional arcs, engagement
-              scoring, cliffhanger analysis, and prioritised notes — and writes them up like a reader,
-              not a robot.
+              ScriptIQ runs a six-stage pipeline powered by Gemini 2.5 Flash over your screenplay —
+              emotional arcs, engagement scoring, cliffhanger analysis, and prioritised notes —
+              and writes them up like a reader, not a robot.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link

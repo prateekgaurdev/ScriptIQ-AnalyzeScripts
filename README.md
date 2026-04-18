@@ -1,6 +1,6 @@
-# Bullet Script Analyzer
+# ScriptIQ Script Analyzer
 
-AI-powered script analysis system built for the Bullet AI Engineer take-home assignment.
+AI-powered script analysis system built for the Bullet AI.
 
 **Stack:** React + Vite · FastAPI · LangGraph · Gemini 2.5 Flash · Pydantic · Recharts
 
@@ -43,7 +43,7 @@ LangGraph State Machine
       [END]                                   │
    └──────────────────────────────────────────┘
         │
-   Gemini 1.5 Pro
+   Gemini 2.5 Flash
 ```
 
 ### Why LangGraph?
@@ -85,42 +85,50 @@ bullet-script-analyzer/
 │   └── src/
 │       ├── pipeline/
 │       │   ├── state.py               # ScriptAnalysisState TypedDict
-│       │   ├── nodes.py               # 6 pure node functions
+│       │   ├── nodes.py               # 6 node functions
 │       │   ├── edges.py               # Conditional retry routing
 │       │   └── graph.py               # LangGraph builder + run_pipeline()
 │       │
 │       ├── prompts/
-│       │   ├── genre_detector.py      # Single-word genre classifier
-│       │   ├── parser_prompt.py       # Stage 1 prompt (v3)
-│       │   ├── analyst_prompts.py     # 4 genre-specific prompts + router
+│       │   ├── genre_detector.py      # Genre classifier
+│       │   ├── parser_prompt.py       # Stage 1 prompt
+│       │   ├── analyst_prompts.py     # Stage 2 genre-specific prompts
 │       │   └── PROMPT_CHANGELOG.md   # Prompt iteration history
 │       │
 │       ├── models/
-│       │   ├── input_models.py        # ParsedScript, Scene, Beat, Character
-│       │   └── output_models.py       # FullAnalysis, EmotionalArc, EngagementScore
+│       │   ├── input_models.py        # ParsedScript, Scene, Beat
+│       │   └── output_models.py       # FullAnalysis, EmotionalArc
 │       │
 │       ├── services/
-│       │   └── gemini_client.py       # Gemini wrapper (swappable provider)
+│       │   └── gemini_client.py       # Gemini 2.5 Flash implementation
 │       │
 │       └── utils/
-│           └── preprocessor.py        # Text cleaning + validation
+│           └── preprocessor.py        # Text cleaning
 │
 ├── frontend/
 │   └── src/
-│       ├── api/analyzeApi.js          # All fetch/axios calls
-│       ├── hooks/useAnalysis.js       # Streaming state + compare state
+│       ├── App.tsx                    # Main router & theme provider
+│       ├── main.tsx                   # React entry point
+│       ├── index.css                  # Global tailwind & typography
+│       ├── lib/
+│       │   ├── api.ts                 # SSE Handler & data mapping
+│       │   ├── export.ts              # Markdown/PDF export logic
+│       │   └── history.ts             # Local storage persistence
+│       │
+│       ├── pages/
+│       │   ├── Index.tsx              # Landing page
+│       │   ├── Analyze.tsx            # Script input & pipeline run
+│       │   ├── Results.tsx            # Multi-tab dossier view
+│       │   └── Compare.tsx            # Side-by-side analysis
+│       │
 │       └── components/
-│           ├── UploadSection.jsx      # Paste / upload / sample picker
-│           ├── StreamingLoader.jsx    # Live pipeline progress
-│           ├── Sidebar.jsx            # Node status + cost + export
-│           └── tabs/
-│               ├── OverviewTab.jsx
-│               ├── EmotionTab.jsx     # Line chart + radar
-│               ├── EngagementTab.jsx  # Score ring + factor cards
-│               ├── SuggestionsTab.jsx
-│               └── CompareTab.jsx     # Dual input + comparison radar
+│           ├── ArcGraph.tsx           # Emotional arc charting
+│           ├── EngagementFactors.tsx  # Score cards & rubrics
+│           ├── PipelineProgress.tsx   # Live node tracker
+│           ├── NotesPanel.tsx         # Prioritised feedback
+│           └── SiteHeader.tsx         # Modern serif navigation
 │
-├── Makefile
+├── Makefile                           # Unified dev/test commands
 └── README.md
 ```
 

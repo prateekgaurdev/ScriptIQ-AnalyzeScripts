@@ -213,7 +213,7 @@ const Analyze = () => {
             <div className="eyebrow">Pipeline</div>
             <h2 className="font-serif-display mt-2 text-2xl font-medium">Six readers in sequence</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Each node validates the last. Live status appears here while the analysis runs.
+              Powered by Gemini 2.5 Flash. Each node validates the last. Live status appears here while the analysis runs.
             </p>
             <div className="mt-5">
               <PipelineProgress active={activeNode} done={done} />

@@ -7,7 +7,7 @@ export default function SiteFooter() {
             Script<span className="italic text-accent">IQ</span>
           </div>
           <p className="mt-1 max-w-md text-sm text-muted-foreground">
-            Editorial-grade script coverage powered by a six-stage LangGraph pipeline. A reader, not a robot.
+            Editorial-grade script coverage powered by a six-stage LangGraph pipeline and Gemini 2.5 Flash. A reader, not a robot.
           </p>
         </div>
         <div className="font-mono-data text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
