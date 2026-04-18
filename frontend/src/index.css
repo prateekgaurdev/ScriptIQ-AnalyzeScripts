@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ScriptIQ — Editorial design system. All colors HSL. */
+
+@layer base {
+  :root {
+    /* Warm editorial canvas */
+    --background: 44 33% 98%;          /* #FAFAF7 warm off-white */
+    --foreground: 222 25% 12%;         /* near-ink */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 25% 12%;
+
+    /* Muted indigo primary */
+    --primary: 230 42% 28%;            /* deep indigo */
+    --primary-foreground: 44 33% 98%;
+    --primary-glow: 230 60% 55%;
+
+    --secondary: 40 20% 94%;
+    --secondary-foreground: 222 25% 12%;
+
+    --muted: 40 18% 92%;
+    --muted-foreground: 222 10% 38%;
+
+    /* Coral accent */
+    --accent: 12 78% 60%;              /* warm coral */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 150 45% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 36 92% 50%;
+    --warning-foreground: 222 25% 12%;
+
+    /* Hairline rules */
+    --hairline: 30 15% 85%;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 230 42% 28%;
+
+    --radius: 0.375rem;
+
+    --sidebar-background: 44 33% 98%;
+    --sidebar-foreground: 222 25% 12%;
+    --sidebar-primary: 230 42% 28%;
+    --sidebar-primary-foreground: 44 33% 98%;
+    --sidebar-accent: 40 20% 94%;
+    --sidebar-accent-foreground: 222 25% 12%;
+    --sidebar-border: 30 15% 85%;
+    --sidebar-ring: 230 42% 28%;
+
+    /* Emotion palette (for arc / reader) */
+    --emo-joy: 38 90% 55%;
+    --emo-sadness: 215 55% 50%;
+    --emo-anger: 6 75% 55%;
+    --emo-fear: 270 35% 45%;
+    --emo-tension: 12 78% 60%;
+    --emo-calm: 175 35% 45%;
+    --emo-neutral: 30 10% 60%;
+  }
+
+  .dark {
+    --background: 222 28% 8%;
+    --foreground: 44 33% 96%;
+    --card: 222 25% 11%;
+    --card-foreground: 44 33% 96%;
+    --popover: 222 25% 11%;
+    --popover-foreground: 44 33% 96%;
+    --primary: 230 70% 70%;
+    --primary-foreground: 222 28% 8%;
+    --primary-glow: 230 80% 75%;
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 44 33% 96%;
+    --muted: 222 18% 16%;
+    --muted-foreground: 30 10% 65%;
+    --accent: 12 78% 62%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 150 45% 50%;
+    --warning: 36 92% 60%;
+    --hairline: 222 15% 22%;
+    --border: 222 15% 22%;
+    --input: 222 15% 22%;
+    --ring: 230 70% 70%;
+    --sidebar-background: 222 28% 8%;
+    --sidebar-foreground: 44 33% 96%;
+    --sidebar-primary: 230 70% 70%;
+    --sidebar-primary-foreground: 222 28% 8%;
+    --sidebar-accent: 222 18% 16%;
+    --sidebar-accent-foreground: 44 33% 96%;
+    --sidebar-border: 222 15% 22%;
+    --sidebar-ring: 230 70% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: hsl(var(--accent) / 0.25);
+  }
+}
+
+@layer components {
+  .container-editorial {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-foreground/40;
+  }
+  .font-serif-display {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+  }
+  .font-mono-data {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-feature-settings: "tnum" on, "lnum" on;
+  }
+  .hairline {
+    @apply border-border;
+  }
+  .hairline-t { @apply border-t border-border; }
+  .hairline-b { @apply border-b border-border; }
+  .hairline-l { @apply border-l border-border; }
+  .hairline-r { @apply border-r border-border; }
+
+  .editorial-card {
+    @apply rounded-md border border-border bg-card;
+  }
+
+  .anim-fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  /* Print styles for /results/:id/print */
+  @media print {
+    body { background: white !important; }
+    .no-print { display: none !important; }
+    .print-page { page-break-after: always; }
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
