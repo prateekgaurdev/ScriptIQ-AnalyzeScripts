@@ -6,8 +6,8 @@ from src.services.gemini_client import transcribe_audio, init_gemini
 
 router = APIRouter(prefix="/voice", tags=["voice"])
 
-# Ensure temp directory exists
-TEMP_DIR = "temp_audio"
+# Use /tmp on Vercel (serverless), fall back to local dir for dev
+TEMP_DIR = "/tmp" if os.path.exists("/tmp") else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "temp_audio")
 os.makedirs(TEMP_DIR, exist_ok=True)
 
 @router.post("/transcribe")

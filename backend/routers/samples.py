@@ -10,7 +10,7 @@ from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/samples", tags=["samples"])
 
-SAMPLES_DIR = os.path.join(os.path.dirname(__file__), "..", "sample_scripts")
+SAMPLES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "sample_scripts")
 
 
 # Hardcoded metadata for demo samples to match frontend expectations
