@@ -63,7 +63,7 @@ export default function SiteHeader() {
             </NavLink>
           ))}
           <a
-            href="https://github.com"
+            href="https://github.com/prateekgaurdev/ScriptIQ-AnalyzeScripts"
             target="_blank"
             rel="noreferrer"
             className="ml-2 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
