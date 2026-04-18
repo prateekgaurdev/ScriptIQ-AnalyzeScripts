@@ -11,6 +11,7 @@ import { downloadMarkdown, openPrintReport } from "@/lib/export";
 import { cn } from "@/lib/utils";
 import { Download, FileDown, Pencil, RefreshCcw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import NarrationReader from "@/components/NarrationReader";
 
 const IMPACT_BADGE: Record<string, string> = {
   high: "bg-accent/15 text-accent",
@@ -135,10 +136,12 @@ const Results = () => {
         {/* Summary + score */}
         <section className="mt-12 grid gap-6 lg:grid-cols-12">
           <div className="rounded-md border border-border bg-card p-8 lg:col-span-7">
-            <div className="eyebrow">Coverage summary</div>
-            <p className="font-serif-display mt-4 text-2xl italic leading-snug text-foreground/90">
-              "{a.summary}"
-            </p>
+            <div className="eyebrow flex items-center justify-between">
+              Coverage summary
+            </div>
+            <div className="mt-4">
+              <NarrationReader text={a.summary} />
+            </div>
             <div className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2">
               <div>
                 <div className="text-xs font-medium uppercase tracking-wider text-success">Strengths</div>

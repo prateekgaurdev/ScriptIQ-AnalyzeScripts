@@ -3,7 +3,6 @@ FastAPI entry point — mounts all routers, configures CORS for React dev server
 """
 
 import logging
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,7 +10,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import analyze, compare, samples
+from routers import analyze, compare, samples, voice
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -52,6 +51,7 @@ app.add_middleware(
 app.include_router(analyze.router)
 app.include_router(compare.router)
 app.include_router(samples.router)
+app.include_router(voice.router)
 
 
 # ---------------------------------------------------------------------------

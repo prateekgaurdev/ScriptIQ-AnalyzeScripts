@@ -10,12 +10,14 @@ import PrintReport from "./pages/PrintReport.tsx";
 import Compare from "./pages/Compare.tsx";
 import History from "./pages/History.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { VoiceProvider } from "@/context/VoiceContext.tsx";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+    <VoiceProvider>
+      <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -31,6 +33,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </VoiceProvider>
   </QueryClientProvider>
 );
 

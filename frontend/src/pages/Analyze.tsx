@@ -8,6 +8,8 @@ import { history } from "@/lib/history";
 import { cn } from "@/lib/utils";
 import { Upload, FileText, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import VoiceInput from "@/components/VoiceInput";
+import { useVoice } from "@/context/VoiceContext";
 
 type Mode = "paste" | "upload" | "sample";
 
@@ -130,6 +132,12 @@ const Analyze = () => {
                 />
               </div>
             </div>
+
+            {mode === "paste" && (
+              <div className="p-4 border-b border-border bg-secondary/10">
+                <VoiceInput onTranscript={(newText) => setText(prev => prev + (prev ? "\n\n" : "") + newText)} />
+              </div>
+            )}
 
             {mode === "paste" && (
               <textarea

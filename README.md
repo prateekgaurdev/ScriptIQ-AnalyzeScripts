@@ -10,12 +10,14 @@ AI-powered script analysis system built for the Bullet AI.
 
 Paste or upload a script (.txt or .pdf) and get:
 
+- **Multi-modal Voice Input** — real-time transcription with automatic speaker diarization (Gemini 1.5 Flash)
 - **Story overview** — narrative summary, detected genre, scene breakdown
 - **Emotional arc** — beat-by-beat intensity line chart + 6-emotion radar chart
 - **Engagement score** — composite 0–10 score with genre-specific factor breakdown
 - **Improvement suggestions** — prioritized, area-tagged, actionable
 - **Cliffhanger detection** — presence + effectiveness rating
 - **Comparison mode** — two scripts side by side with overlaid radar chart
+- **Narration Deck** — listen to analysis with word-by-word highlighting
 - **Cost tracker** — token usage + estimated USD cost per analysis
 
 ---
@@ -229,6 +231,23 @@ If this were a production system:
 ---
 
 ## Sample Scripts
+
+## 🎙️ Voice & Accessibility
+
+ScriptIQ features a state-of-the-art voice suite designed for collaborative writing and hands-free review:
+
+### 1. Diarized Transcription (STT)
+Powered by **Gemini 1.5 Flash**, our voice input doesn't just transcribe—it understands.
+- **Auto-Diarization**: Detects multiple voices in a single audio stream and labels them as `[Speaker 1]`, `[Speaker 2]`, etc.
+- **Global Renaming**: Integrated with `VoiceContext`, allowing you to replace generic speaker labels with character names (e.g., "John", "Sarah") across the entire document instantly.
+- **Latency-Optimized**: Uses a hybrid approach with Web Speech API for instant visual feedback and Gemini for background structural refinement.
+
+### 2. Interactive Narration (TTS)
+Review your analysis by listening to it.
+- **High-Speed Highlighting**: Uses the browser's native `speechSynthesis` for zero-latency playback.
+- **Visual Sync**: Words are highlighted in real-time as they are spoken, creating an immersive "teleprompter" style review experience.
+
+---
 
 Three scripts are preloaded for demo purposes:
 

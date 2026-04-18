@@ -13,6 +13,7 @@ load_dotenv()
 
 import google.generativeai as genai
 from google.generativeai.types import GenerateContentResponse
+import time
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -72,6 +73,41 @@ def call_gemini(
         output_tokens = response.usage_metadata.candidates_token_count or 0
 
     return text, input_tokens, output_tokens
+
+
+def transcribe_audio(
+    file_path: str,
+    mime_type: str = "audio/webm",
+) -> str:
+    """
+    Upload an audio file to Gemini and request a diarized transcript.
+    Returns the transcript text.
+    """
+    # Upload the file
+    audio_file = genai.upload_file(path=file_path, mime_type=mime_type)
+
+    # Wait for the file to be processed
+    while audio_file.state.name == "PROCESSING":
+        time.sleep(1)
+        audio_file = genai.get_file(audio_file.name)
+
+    if audio_file.state.name == "FAILED":
+        raise ValueError("Audio processing failed in Gemini")
+
+    model = genai.GenerativeModel(model_name=GEMINI_MODEL)
+    
+    prompt = (
+        "Transcribe this audio. Detect multiple speakers. "
+        "Format the output strictly as a series of lines: [Speaker 1]: text... [Speaker 2]: text... "
+        "Only output the transcript, no other text."
+    )
+
+    response = model.generate_content([prompt, audio_file])
+    
+    # Cleanup: delete the file from Gemini storage
+    genai.delete_file(audio_file.name)
+
+    return response.text or ""
 
 
 # ---------------------------------------------------------------------------
